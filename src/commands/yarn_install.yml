@@ -26,7 +26,7 @@ steps:
               find . -type f -name 'yarn.lock' -not -path "*node_modules*" -exec cat {} + >> ~/.tmp/checksumfiles/yarn.lock
         - restore_cache:
             keys:
-              - yarn-cache-{{ arch }}-{{ checksum "~/.tmp/checksumfiles/package.json" }}-{{ checksum "~/.tmp/checksumfiles/yarn.lock" }}-{{ .Environment.CACHE_VERSION }}
+              - yarn-cache-X-{{ arch }}-{{ checksum "~/.tmp/checksumfiles/package.json" }}-{{ checksum "~/.tmp/checksumfiles/yarn.lock" }}-{{ .Environment.CACHE_VERSION }}
   - when:
       condition:
         equal: ["", <<parameters.yarn_install_directory>>]
@@ -47,4 +47,8 @@ steps:
         - save_cache:
             paths:
               - <<parameters.cache_folder>>
-            key: yarn-cache-{{ arch }}-{{ checksum "~/.tmp/checksumfiles/package.json" }}-{{ checksum "~/.tmp/checksumfiles/yarn.lock" }}-{{ .Environment.CACHE_VERSION }}
+              - node_modules
+              - packages/mobile/node_modules
+              - packages/web/node_modules
+              - packages/shared/node_modules
+            key: yarn-cache-X-{{ arch }}-{{ checksum "~/.tmp/checksumfiles/package.json" }}-{{ checksum "~/.tmp/checksumfiles/yarn.lock" }}-{{ .Environment.CACHE_VERSION }}

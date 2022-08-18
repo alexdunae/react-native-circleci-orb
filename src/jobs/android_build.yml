@@ -26,6 +26,10 @@ parameters:
     description: Should we cache after yarn install? Defaults to true
     type: boolean
     default: true
+  yarn_cache_folder:
+    description: The path to the yarn cache folder
+    type: string
+    default: "/tmp/yarn"
   on_after_initialize:
     description: A custom command to run right after yarn install.
     type: string

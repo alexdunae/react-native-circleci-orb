@@ -14,6 +14,10 @@ parameters:
     description: Should we cache after yarn install? Defaults to true
     type: boolean
     default: true
+  yarn_cache_folder:
+    description: The path to the yarn cache folder
+    type: string
+    default: "/tmp/yarn"
   # For the start emulator command
   device_name:
     description: The name of the AVD. You use this name to tell which device to run tests on. Defaults to 'TestingAVD'.
